@@ -1,13 +1,10 @@
+
 import axios from "axios";
 
-const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
-});
+const API_URL = "https://just-presence-production-d4be.up.railway.app/api/items";
 
-export const getItems = () => API.get("/items");
-export const getItemById = (id) => API.get(`/items/${id}`);
-export const createItem = (itemData) => API.post("/items", itemData);
-export const updateItem = (id, itemData) => API.put(`/items/${id}`, itemData);
-export const deleteItem = (id) => API.delete(`/items/${id}`);
-
-export default API;
+export const getItems = () => axios.get(API_URL);
+export const createItem = (item) => axios.post(API_URL, item);
+export const getItemById = (id) => axios.get(`${API_URL}/${id}`);
+export const updateItem = (id, item) => axios.put(`${API_URL}/${id}`, item);
+export const deleteItem = (id) => axios.delete(`${API_URL}/${id}`);
